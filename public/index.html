@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="estilos.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transferencia de Archivos</title>
+</head>
+
+<body class="modo-noche">
+  <header>
+    <h1>File Flow</h1>
+  </header>
+
+  <section id="file-upload">
+    <h2>Cargar archivo</h2>
+    <form id="upload-form">
+     
+
+      <input type="file" id="file-input" name="file" required>
+      <button class="fondoboton" type="submit">Cargar Archivo</button>
+    </form>
+  </section>
+
+  <section id="file-list">
+    <h2>Archivos disponibles <span id="file-count">0</span></h2>
+    <button class="fondoboton" onclick="mostrarArchivos()">Mostrar Archivos</button>
+    <ul id="file-list"></ul>
+  </section>
+
+  <footer id="alumnos-section" style="text-align: center; background-color: #555; padding: 10px;">
+    <p>ALUMNOS:<br>Ramirez Martinez Angel Gustavo<br>Gonzalez Carillo Enrique</p>
+  </footer>
+
+  <script>
+    // Obtener la lista de archivos al cargar la página
+    let fileListSection = document.getElementById("file-list");
+    fetch("/archivos/files")
+      .then((response) => response.json())
+      .then((files) => {
+        const fileCountElement = document.getElementById("file-count");
+        fileCountElement.textContent = files.length;
+      });
+
+
+
+    function mostrarArchivos() {
+        fetch("/archivos/files")
+          .then((response) => response.json())
+          .then((files) => {
+            const fileList = document.getElementById("file-list");
+
+            files.forEach((file) => {
+              const listItem = document.createElement("li");
+              const downloadLink = document.createElement("a");
+              downloadLink.textContent = file;
+              downloadLink.href = `archivos/download/${file}`;
+              downloadLink.download = file;
+              listItem.appendChild(downloadLink);
+              fileList.appendChild(listItem);
+            });
+
+            fileListSection.style.display = "block";
+          });
+      }
+    
+
+    // Enviar el documento al servidor web
+    document
+      .getElementById("upload-form")
+      .addEventListener("submit", (event) => {
+        event.preventDefault();
+        const fileInput = document.getElementById("file-input");
+        const formData = new FormData();
+        formData.append("file", fileInput.files[0]);
+
+        fetch("archivos/upload", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.text())
+          .then((message) => {
+            alert(message);
+            location.reload();
+          });
+      });
+
+    // Descargar los archivos
+    function downloadFile(fileName) {
+      window.location.href = `archivos/download/${fileName}`;
+    }
+  </script>
+</body>
+
+</html>

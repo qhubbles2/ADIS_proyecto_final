@@ -1,0 +1,4 @@
+<Configuration>
+  <vGPU>Enable</vGPU>
+  <MemoryInMB>16384</MemoryInMB>
+</Configuration>

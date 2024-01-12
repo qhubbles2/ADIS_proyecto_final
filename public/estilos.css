@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+.modo-noche {
+    background-color: #333;
+}
+
+header,
+section,
+footer {
+    background-color: #555;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1, h2 {
+    margin-bottom: 10px;
+}
+
+.fondoboton {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.fondoboton:hover {
+    background-color: #2980b9;
+}
+
+label,
+#file-input,
+#download-select {
+    padding: 10px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    background-color: #ecf0f1;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#file-input:hover,
+#download-select:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+footer {
+    text-align: center;
+    background-color: #555;
+    padding: 10px;
+}
+/* Agrega este bloque al final de tu archivo de estilos.css o en la sección de estilos en el head del HTML */
+#file-list a {
+    color: #fff; /* Color blanco para el texto del enlace */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    font-size: 18px; /* Tamaño de fuente más grande, ajusta según sea necesario */
+  }
+  
+  #file-list a:hover {
+    color: #ccc; /* Cambia el color al hacer hover para dar retroalimentación visual */
+  }
+  
+  #alumnos-section {
+    text-align: center;
+    background-color: #555;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
